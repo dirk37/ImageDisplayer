@@ -85,7 +85,7 @@
             this.ClientSize = new System.Drawing.Size(971, 847);
             this.Controls.Add(this.label1);
             this.Name = "Form1";
-            this.Text = "Image Displayer";
+            this.Text = "Image Displayer 1.0";
             this.DragDrop += new System.Windows.Forms.DragEventHandler(this.DragDropHandler);
             this.DragOver += new System.Windows.Forms.DragEventHandler(this.DragOverHandler);
             this.contextMenuStrip1.ResumeLayout(false);
