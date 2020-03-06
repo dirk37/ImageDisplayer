@@ -61,8 +61,10 @@ namespace ImageDisplayer
             newpb.MouseDown += PbMouseDown;
             newpb.MouseWheel += PbMouseWheel;
             newpb.MouseDoubleClick += PbDoubleClick;
-    
+            
             this.Controls.Add(newpb);
+
+            newpb.BringToFront(); //put latest images on top
             pictureboxes.Add(newpb);
         }
 
@@ -183,5 +185,6 @@ namespace ImageDisplayer
         { //arrange images 
             arrangeboxes();
         }
+
     }
 }

@@ -32,8 +32,8 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.closeImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sendToBackToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.label1 = new System.Windows.Forms.Label();
             this.autoArrangeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.label1 = new System.Windows.Forms.Label();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -44,7 +44,7 @@
             this.sendToBackToolStripMenuItem,
             this.autoArrangeToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(153, 92);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(143, 70);
             // 
             // closeImageToolStripMenuItem
             // 
@@ -60,6 +60,13 @@
             this.sendToBackToolStripMenuItem.Text = "Send to Back";
             this.sendToBackToolStripMenuItem.Click += new System.EventHandler(this.sendToBackToolStripMenuItem_Click);
             // 
+            // autoArrangeToolStripMenuItem
+            // 
+            this.autoArrangeToolStripMenuItem.Name = "autoArrangeToolStripMenuItem";
+            this.autoArrangeToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.autoArrangeToolStripMenuItem.Text = "AutoArrange";
+            this.autoArrangeToolStripMenuItem.Click += new System.EventHandler(this.autoArrangeToolStripMenuItem_Click);
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -68,13 +75,6 @@
             this.label1.Size = new System.Drawing.Size(141, 13);
             this.label1.TabIndex = 1;
             this.label1.Text = "Double Click to bring to front";
-            // 
-            // autoArrangeToolStripMenuItem
-            // 
-            this.autoArrangeToolStripMenuItem.Name = "autoArrangeToolStripMenuItem";
-            this.autoArrangeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.autoArrangeToolStripMenuItem.Text = "AutoArrange";
-            this.autoArrangeToolStripMenuItem.Click += new System.EventHandler(this.autoArrangeToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -85,7 +85,7 @@
             this.ClientSize = new System.Drawing.Size(971, 847);
             this.Controls.Add(this.label1);
             this.Name = "Form1";
-            this.Text = "Image Disp";
+            this.Text = "Image Displayer";
             this.DragDrop += new System.Windows.Forms.DragEventHandler(this.DragDropHandler);
             this.DragOver += new System.Windows.Forms.DragEventHandler(this.DragOverHandler);
             this.contextMenuStrip1.ResumeLayout(false);
