@@ -34,6 +34,7 @@
             this.sendToBackToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.autoArrangeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
+            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -42,28 +43,29 @@
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.closeImageToolStripMenuItem,
             this.sendToBackToolStripMenuItem,
-            this.autoArrangeToolStripMenuItem});
+            this.autoArrangeToolStripMenuItem,
+            this.editToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(143, 70);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 114);
             // 
             // closeImageToolStripMenuItem
             // 
             this.closeImageToolStripMenuItem.Name = "closeImageToolStripMenuItem";
-            this.closeImageToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.closeImageToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.closeImageToolStripMenuItem.Text = "Close Image";
             this.closeImageToolStripMenuItem.Click += new System.EventHandler(this.closeImageToolStripMenuItem_Click);
             // 
             // sendToBackToolStripMenuItem
             // 
             this.sendToBackToolStripMenuItem.Name = "sendToBackToolStripMenuItem";
-            this.sendToBackToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.sendToBackToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.sendToBackToolStripMenuItem.Text = "Send to Back";
             this.sendToBackToolStripMenuItem.Click += new System.EventHandler(this.sendToBackToolStripMenuItem_Click);
             // 
             // autoArrangeToolStripMenuItem
             // 
             this.autoArrangeToolStripMenuItem.Name = "autoArrangeToolStripMenuItem";
-            this.autoArrangeToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.autoArrangeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.autoArrangeToolStripMenuItem.Text = "AutoArrange";
             this.autoArrangeToolStripMenuItem.Click += new System.EventHandler(this.autoArrangeToolStripMenuItem_Click);
             // 
@@ -75,6 +77,13 @@
             this.label1.Size = new System.Drawing.Size(172, 13);
             this.label1.TabIndex = 1;
             this.label1.Text = "Double Click image to bring to front";
+            // 
+            // editToolStripMenuItem
+            // 
+            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.editToolStripMenuItem.Text = "Edit";
+            this.editToolStripMenuItem.Click += new System.EventHandler(this.editToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -101,6 +110,7 @@
         private System.Windows.Forms.ToolStripMenuItem sendToBackToolStripMenuItem;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ToolStripMenuItem autoArrangeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
     }
 }
 

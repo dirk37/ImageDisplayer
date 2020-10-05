@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Security.AccessControl;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -24,13 +26,23 @@ namespace ImageDisplayer
 
             foreach (string file in files)
             {
-                try //report any errors as invalid image
+               try //report any errors as invalid image
 
                 {
-                    Image fileimage = Image.FromFile(file);
+                    Image fileimage = null;
+                    if (Path.GetExtension(file) == ".webp") //check if file is a webp
+                    {
+                        byte[] imagefile = File.ReadAllBytes(file); //read file into array to feed into webp decoder
+                        fileimage = new Imazen.WebP.SimpleDecoder().DecodeFromBytes(imagefile,imagefile.Length); //decode webp into a bitmpap
+                    }
+                    else //handle all other file formats
+                    {
+                      fileimage = Image.FromFile(file);
+                    }
+                    
                     addpicture(fileimage,e.X,e.Y); //add picture for each file at coordinates where it was dropped
                 }
-                catch (Exception)
+                catch (Exception) //catch any errors and report invalid image
                 {
                     MessageBox.Show("Invalid Image");
                 }
@@ -186,5 +198,9 @@ namespace ImageDisplayer
             arrangeboxes();
         }
 
+        private void editToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
