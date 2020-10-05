@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -26,31 +27,35 @@ namespace ImageDisplayer
 
             foreach (string file in files)
             {
-               try //report any errors as invalid image
-
-                {
-                    Image fileimage = null;
-                    if (Path.GetExtension(file) == ".webp") //check if file is a webp
-                    {
-                        byte[] imagefile = File.ReadAllBytes(file); //read file into array to feed into webp decoder
-                        fileimage = new Imazen.WebP.SimpleDecoder().DecodeFromBytes(imagefile,imagefile.Length); //decode webp into a bitmpap
-                    }
-                    else //handle all other file formats
-                    {
-                      fileimage = Image.FromFile(file);
-                    }
-                    
-                    addpicture(fileimage,e.X,e.Y); //add picture for each file at coordinates where it was dropped
-                }
-                catch (Exception) //catch any errors and report invalid image
-                {
-                    MessageBox.Show("Invalid Image");
-                }
-                
+                LoadFile(file, e.X, e.Y);                
             }
 
         }
 
+        private void LoadFile(string file, int x, int y) //load a file into the collage
+        {
+            try //report any errors as invalid image
+
+            {
+                Image fileimage = null;
+                if (Path.GetExtension(file) == ".webp") //check if file is a webp
+                {
+                    byte[] imagefile = File.ReadAllBytes(file); //read file into array to feed into webp decoder
+                    fileimage = new Imazen.WebP.SimpleDecoder().DecodeFromBytes(imagefile, imagefile.Length); //decode webp into a bitmpap
+                }
+                else //handle all other file formats
+                {
+                    fileimage = Image.FromFile(file);
+
+                }
+
+                addpicture(fileimage, x, y, file); //add picture for each file at coordinates where it was dropped
+            }
+            catch (Exception) //catch any errors and report invalid image
+            {
+                MessageBox.Show("Invalid Image");
+            }
+        }
   
         private void DragOverHandler(object sender, DragEventArgs e)
         {
@@ -59,16 +64,18 @@ namespace ImageDisplayer
         }
 
         List<PictureBox> pictureboxes = new List<PictureBox>();
-        private void addpicture(Image fileimage, int x, int y)
+        private void addpicture(Image fileimage, int x, int y, string imagepath)
         { //create new picture box for each image and add to form
 
             PictureBox newpb = new PictureBox();
+            newpb.Tag = imagepath;
             newpb.Location = this.PointToClient(new Point(x, y));
             newpb.Image = fileimage;
             newpb.Height = 400;
             newpb.Width = (int)((double)newpb.Image.Width / (double)newpb.Image.Height * 400.0); //maintain image proportions
             newpb.BorderStyle = BorderStyle.FixedSingle;
             newpb.SizeMode = PictureBoxSizeMode.Zoom;
+            //handlers for mouse action on pictures
             newpb.MouseMove += PbMouseMove;
             newpb.MouseDown += PbMouseDown;
             newpb.MouseWheel += PbMouseWheel;
@@ -200,7 +207,29 @@ namespace ImageDisplayer
 
         private void editToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            ProcessStartInfo startInfo = new ProcessStartInfo("mspaint.exe");
+            startInfo.WindowStyle = ProcessWindowStyle.Normal;
+            //pass in image path as argument
+            startInfo.Arguments = selectedPb.Tag.ToString();
+            Process.Start(startInfo);
 
+        }
+
+        private void reloadToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //store coordinates
+            Point location = this.PointToScreen(new Point(selectedPb.Location.X, selectedPb.Location.Y)); //convert to screen coords since LoadFile expects them
+            int x = location.X;
+            int y = location.Y;
+            string filename = selectedPb.Tag.ToString();
+
+            //remove picture box
+            pictureboxes.Remove(selectedPb);
+            selectedPb.Image.Dispose(); //destroy image handle to release file
+            selectedPb.Dispose(); //destroy picturebox 
+
+            //re-add picturebox
+            LoadFile(filename, x, y);
         }
     }
 }
